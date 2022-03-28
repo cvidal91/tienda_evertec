@@ -16,4 +16,17 @@ class ShopController extends Controller
         $products = Products::getAll();
         return view('Shop.index', compact('products'));
     }
+
+    
+    /**
+     * showPreview
+     *
+     * @param  int $id_product
+     * @return void
+     */
+    public function showPreview(int $id_product)
+    {
+        $products = Products::getProductById($id_product);
+        return view('Shop.preview', compact('products'));
+    }
 }

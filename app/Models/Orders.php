@@ -84,4 +84,15 @@ class Orders extends Model
     {
         return self::ST_REJECTED;
     }
+    
+    /**
+     * translatedStatus
+     * Translate status description friendly
+     *
+     * @return string
+     */
+    public function translatedStatus(): string
+    {
+        return trans('status.' . $this->status);
+    }
 }
