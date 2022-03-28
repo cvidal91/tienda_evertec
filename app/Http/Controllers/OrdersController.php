@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Redirect;
 
 class OrdersController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $orders = Orders::paginate(10);
         return view('Orders.list_orders', compact('orders'));
     }
@@ -48,7 +49,7 @@ class OrdersController extends Controller
     public function showDetail(Orders $order, PaymentContractInterface $payment)
     {
         $response_payment = $payment->getRequest($order->customer_request_id);
-        
+
         if ($response_payment['success']) {
             switch ($response_payment['status']) {
                 case 'APPROVED':
