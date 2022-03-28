@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(ShopController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/item/{id}', 'showPreview')->name('item');
+});
+
+Route::controller(OrdersController::class)->group(function () {
+    Route::get('/orders', 'index')->name('orders');
+    Route::post('/orders/pay', 'pay')->name('orders.pay');
+    Route::get('/orders/show/{order}', 'showDetail')->name('orders.show');
 });
